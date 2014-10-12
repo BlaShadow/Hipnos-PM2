@@ -1,0 +1,18 @@
+/* Empty. Add your own CSS if you like */
+.body{
+	background-color: #e7edf1;
+}
+
+/** HostView **/
+#host_view_container{
+	height: 100%;
+}
+
+#host_view_content{
+	background-color: white;
+	margin:10px;
+	padding: 5px;
+	border-radius: 5px;
+	font-family: 'Sans-serif';
+	font-weight: normal;
+}

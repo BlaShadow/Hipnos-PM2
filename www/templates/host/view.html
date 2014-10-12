@@ -1,0 +1,111 @@
+<!-- host view -->
+<style type="text/css">
+	
+	#host_info,#charts{
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.node_process{
+		margin:10px;
+		padding: 4px;
+	}
+
+	.item_spam{
+		display: inline-block;
+		position: absolute;
+	}
+	
+	#charts{
+		margin: 20px;		
+	}
+
+	#charts div,ul{
+		display:inline-block;
+		vertical-align:top;
+	}
+	
+	.online{
+		color: #8BBE0E;
+		font-weight: bold;
+	}
+
+	#charts li {
+	  display: block;
+	  padding-left: 30px;
+	  position: relative;
+	  margin-bottom: 4px;
+	  border-radius: 5px;
+	  padding: 2px 8px 2px 28px;
+	  font-size: 14px;
+	}
+
+	#charts li span{
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		left: 10px;
+		top: 4px;
+	}
+</style>
+<ion-view ng-init='load()' title="Host {{model.hostName}}">
+  	<ion-nav-buttons side="left">
+    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  	</ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+	    <button class="button button-positive" ng-click='edit()'>Edit</button>
+	</ion-nav-buttons> 
+
+  	<ion-content class="has-header body">
+		<div id='host_view_container'>
+
+			<button class='button button-full button-positive' ng-click='execute()'>Execute</button>
+
+			<div id='host_view_content'>
+				<div style='padding:20px;'>
+					<div>
+
+						<div id='host_info'>
+							<b>URL</b> <a href='{{ model.target }}'>{{ model.target }}</a><br>
+							<b>HostName:</b> {{ result.system_info.hostname }} <br>
+							<b>UpTime:</b> {{ getTimeSegs(result.system_info.uptime) }} <br>
+							<b>Load Average:</b> {{ result.monit.loadavg }} <br>
+
+							<b>CPU:</b> {{ result.monit.cpu[0].model }} <br>
+							<b>Total Memory:</b> {{ parse(result.monit.total_mem).label }} <br>
+							<b>Free Memory:</b> {{ parse(result.monit.free_mem).label }} <br>
+						</div>
+						
+						<div id='charts'>
+							<div>
+								<canvas id="memoryChart" width="300" height="300" ></canvas>
+							</div>
+							<div id='legent_container'></div>
+						</div>
+
+						<div>
+							<b>NodeJS Processes</b>
+							<div ng-repeat='item in result.processes'>
+								<div class='node_process'>
+									<b>Status:</b>  <span ng-class='{ online: item.pm2_env.status == "online" }'>{{ item.pm2_env.status }}</span><br>
+									<b>PID:</b> {{ item.pid }}<br>
+									<b>Name Process:</b> {{ item.name }}<br>
+									<b>Memory:</b> {{ parse(item.monit.memory).label }}<br>
+									<b>Uptime From :</b> {{ getTime(item.pm2_env.pm_uptime) }}<br>
+									<b>Created at  :</b> {{ getTime(item.pm2_env.created_at) }}<br>
+									<b>Restarts:</b> {{ item.pm2_env.restart_time }}<br>
+									<b>Process Mode:</b> {{ item.pm2_env.exec_mode }}<br>
+								</div>
+								<hr>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<button class='button button-full button-assertive' ng-click='delete({{id}})'>Delete</button>
+		</div>
+	</ion-content>
+</ion-view>

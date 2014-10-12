@@ -1,0 +1,36 @@
+{
+  "name": "Hipnos",
+  "version": "0.0.0",
+  "description": "PM2 IONIC client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.blageek.net:root/hipnos.git"
+  },
+  "keywords": [
+    "javascript",
+    "angular",
+    "web",
+    "pm2",
+    "nodejs"
+  ],
+  "author": "blashadow",
+  "license": "BSD",
+  "devDependencies": {
+    "gulp": "~3.8.8",
+    "gulp-inject": "~1.0.2",
+    "gulp-jshint": "~1.8.5",
+    "gulp-uglify": "~1.0.1",
+    "gulp-util": "~3.0.1",
+    "bower": "~1.3.12",
+    "gulp-concat": "~2.4.1",
+    "gulp-sass": "~1.1.0",
+    "gulp-minify-css": "~0.3.10",
+    "gulp-rename": "~1.2.0",
+    "shelljs": "~0.3.0",
+    "jshint": "~2.5.6"
+  }
+}
