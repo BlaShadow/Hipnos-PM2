@@ -65,7 +65,7 @@ gulp.task('prod_inject',function(){
   });
 
   return target.pipe(inject(sources,{
-            addRootSlash: true,
+            addRootSlash: false,
             ignorePath: 'www/',
         })).pipe(gulp.dest('www/'));
 });
@@ -88,7 +88,7 @@ gulp.task('dev_script',function(){
 
     return target
         .pipe(inject(sources,{
-            addRootSlash: true,
+            addRootSlash: false,
         }))
         .pipe(gulp.dest(''));
 });
