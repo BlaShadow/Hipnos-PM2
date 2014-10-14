@@ -31,3 +31,11 @@ it will start a web api (launch an health API on port 9615)
     }
 
 **GULP**
+
+Include all scripts tag into index.html
+
+    gulp dev
+    
+Compile all scripts (controllers,services,app) into one single js file and include into index.html
+
+    gulp prod
