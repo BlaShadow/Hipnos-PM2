@@ -36,6 +36,6 @@ Include all scripts tag into index.html
 
     gulp dev
     
-Compile all scripts (controllers,services,app) into one single js file and include into index.html
+Compile & uglyfy all scripts (controllers,services,app) into one single js file and include into index.html
 
     gulp prod
