@@ -19,6 +19,42 @@
 		      <a href="http://nightdeveloper.net/">Personal Blog</a>	
 		    </p>
 		  </div>
+
+		  <div class="item">
+		  	<div id="preview">
+				<h1><a id="Hipnos_PM2_Client_0"></a>Hipnos PM2 Client</h1>
+				<p><strong>Configure PM2</strong></p>
+				<p>it will start a web api (launch an health API on port 9615)</p>
+				<pre><code>pm2 web </code></pre>
+				<p><strong>Nginx conf</strong></p>
+				<pre><code>upstream name.dev{
+				  server 127.0.0.1:9615;
+				}
+				   
+				server{
+				    listen 0.0.0.0:80;
+				    server_name name.dev;
+				    access_log /var/log/nginx/name_dev.log;
+				 
+				    location / {
+				        proxy_set_header X-Real-IP $remote_addr;
+				        proxy_set_header X-Forwarded-Fpr $proxy_add_x_forwarded_for;
+				        proxy_set_header Host $http_host;
+				        proxy_set_header X-Nginx-Proxy true;
+				 
+				        proxy_pass http://name.dev/;
+				        proxy_redirect off;
+				    }
+				}
+				</code></pre>
+				<p><strong>GULP</strong></p>
+				<p>Include all scripts tag into index.html</p>
+				<pre><code>gulp dev
+				</code></pre>
+				<p>Compile &amp; uglyfy all scripts (controllers,services,app) into one single js file and include into index.html</p>
+				<pre><code>gulp prod</code></pre>
+			</div>
+		  </div>
 		</div>
 	</ion-content>
 </ion-view>
